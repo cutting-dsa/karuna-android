@@ -20,8 +20,8 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Karuna Pages"
-            android:textSize="16dp" />
+            android:text="@string/welcome_to_karuna_pages"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,16 +38,17 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email"
             android:inputType="textEmailAddress"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="TextViewEdits" />
 
         <EditText
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="8"
-            android:inputType="number" />
+            android:inputType="textEmailAddress" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,8 +65,8 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:textSize="16dp" />
+            android:text="@string/password"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txtPassword"
@@ -100,7 +101,7 @@
             android:padding="8dp"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
-            android:text="No account? Register Here"
+            android:text="@string/no_account_register_here"
             android:autoLink="all"
             android:gravity="center_horizontal" />
 
@@ -109,10 +110,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="64dp"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

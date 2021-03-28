@@ -23,7 +23,7 @@
             android:text="@string/register_to_karuna_pages"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +40,7 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter Name"
+            android:text="Name"
             android:inputType="text"
             android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/textView3"
