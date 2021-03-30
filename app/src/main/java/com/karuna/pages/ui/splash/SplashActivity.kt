@@ -7,7 +7,7 @@ import android.os.Handler
 import com.karuna.pages.MainActivity
 import com.karuna.pages.R
 import com.karuna.pages.ui.login.ui.login.LoginActivity
-import com.karuna.pages.utils.PrefrenceManager
+import com.karuna.pages.utils.PreferenceManager
 
 class SplashActivity : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            if (PrefrenceManager(this).getLoginStatus() == 0) {
+            if (PreferenceManager(this).getLoginStatus() == 0) {
                 val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

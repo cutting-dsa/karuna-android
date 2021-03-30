@@ -1,23 +1,26 @@
 package com.karuna.pages.ui.login.ui.login
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.karuna.pages.data.entities.User
 import com.karuna.pages.data.repository.UserRepository
 import com.karuna.pages.utils.Resource
 import kotlinx.coroutines.launch
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var repository = UserRepository()
+    private var repository = UserRepository(application.applicationContext)
 
     val uiState: MutableLiveData<Resource<User>> = MutableLiveData()
 
     fun loginUser(email: String, password: String) {
         viewModelScope.launch {
-            //save user in local db here or in repository and set logged in to true
-            uiState.value = repository.loginUser(email, password)
+            val response = repository.loginUser(email, password)
+            repository.user = response.data
+            uiState.value = response
         }
     }
+
 }

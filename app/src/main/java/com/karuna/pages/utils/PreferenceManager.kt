@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder
 import com.karuna.pages.data.entities.User
 
 @SuppressLint("CommitPrefEdits")
-class PrefrenceManager(private var _context: Context) {
+class PreferenceManager(_context: Context) {
 
     var pref: SharedPreferences
     private var editor: SharedPreferences.Editor
@@ -16,19 +16,9 @@ class PrefrenceManager(private var _context: Context) {
 
 
     companion object {
-
         private val LOGIN_STATUS = "LOGIN_STATUS"
-        private val PROFILE = "security_user_profilellll"
-        private val PASSWORD = "security_user_password"
         private val USER_DATA = "user"
-        private val CONFIG_TAKE_PICTURE = "CONFIG_TAKE_PICTURE"
-        private val CONFIG_DO_BOTH_TASKS = "CONFIG_DO_BOTH_TASKS"
-        private val CONFIG_VERIFY_ID_PNLINE = "CONFIG_VERIFY_ID_PNLINE"
-        private val CONFIG_VERIFY_BY_SCANNING = "VERIFY_BY_SCANNING"
-        private val CONFIG_VISITOR_SHOULD_HAVE_APPOINTMENT = "VISITOR_SHOULD_HAVE_APPOINTMENT"
-        private val IS_CONFIGURED = "IS_CONFIGURED"
-        private val PREF_NAME = "security_prefrencesllll"
-
+        private val PREF_NAME = "karuna_prefrences"
     }
 
     init {
@@ -57,9 +47,7 @@ class PrefrenceManager(private var _context: Context) {
             return if (userString.isEmpty()) null else get(USER_DATA)
         }
         set(user) {
-//            user?.safebodaAccessToken?.let(::setSafebodaAccessToken)
-//            editor.putString(USER_DATA, gson.toJson(user, User::class.java)).apply()
-           // put(USER_DATA, user!!)
+            put(user, USER_DATA)
         }
 
     /**
