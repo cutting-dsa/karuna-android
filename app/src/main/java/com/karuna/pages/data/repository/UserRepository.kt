@@ -27,4 +27,8 @@ class UserRepository constructor(context: Context) {
         val loginStatus = if (status) 1 else 0
         preferenceManager.setLoginStatus(loginStatus)
     }
+
+    fun logoutUser() {
+        preferenceManager.setLoginStatus(0)
+    }
 }

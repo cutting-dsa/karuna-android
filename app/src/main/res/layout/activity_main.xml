@@ -162,15 +162,15 @@
             android:id="@+id/profileLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_dashboard_black_24dp"
             android:orientation="vertical"
             android:gravity="right"
             android:padding="15dp">
 
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="176dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/profile"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Profile"
+                android:text="@string/profile"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
         </LinearLayout>
