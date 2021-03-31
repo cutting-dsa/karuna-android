@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.karuna.pages.MainActivity
 import com.karuna.pages.R
-import com.karuna.pages.ui.BaseActivity
+import com.karuna.pages.ui.base.BaseActivity
+import com.karuna.pages.ui.home.HomeActivity
 import com.karuna.pages.ui.login.ui.register.RegisterActivity
 import com.karuna.pages.utils.Resource
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,7 +30,8 @@ class LoginActivity : BaseActivity() {
                 Resource.Status.SUCCESS -> {
                     Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
                     showLoadingIndicator(false)
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
                 }
                 Resource.Status.ERROR -> {
                     showLoadingIndicator(false)
@@ -54,7 +55,7 @@ class LoginActivity : BaseActivity() {
         }
 
         btnLogin.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
 //            val email = txtUsername.text.toString()
 //            val password = txtPassword.text.toString()
 //            when {

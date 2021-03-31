@@ -1,4 +1,4 @@
-package com.karuna.pages.ui
+package com.karuna.pages.ui.base
 
 import androidx.appcompat.app.AppCompatActivity
 import com.karuna.pages.utils.gone

@@ -19,8 +19,19 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val response = repository.loginUser(email, password)
             repository.user = response.data
+            saveLoginStatus(response.status)
             uiState.value = response
         }
     }
 
+    private fun saveLoginStatus(status: Resource.Status) {
+        when (status) {
+            Resource.Status.SUCCESS -> {
+                repository.isUserLoggedIn(true)
+            }
+            else -> {
+                repository.isUserLoggedIn(false)
+            }
+        }
+    }
 }

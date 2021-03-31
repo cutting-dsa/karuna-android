@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.karuna.pages.MainActivity
 import com.karuna.pages.R
+import com.karuna.pages.ui.home.HomeActivity
 import com.karuna.pages.ui.login.ui.login.LoginActivity
 import com.karuna.pages.utils.PreferenceManager
 
@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                val intent = Intent(applicationContext, MainActivity::class.java)
+                val intent = Intent(applicationContext, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             }
