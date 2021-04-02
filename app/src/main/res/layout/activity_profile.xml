@@ -107,7 +107,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Out"
+            android:text="@string/sign_out"
             android:id="@+id/logoutBtn"
             android:layout_gravity="center"
             android:padding="10dp"/>

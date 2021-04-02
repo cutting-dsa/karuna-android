@@ -23,15 +23,15 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.fetchUser()
 
         viewModel.uiState.observe(this, Observer {
-            txtName.text = it.name
-            txtEmail.text = it.email
-            txtRole.text = it.name
+            txtName.text = it?.name
+            txtEmail.text = it?.email
+            txtRole.text = it?.name
         })
 
         logoutBtn.setOnClickListener {
-            viewModel.logoutUser()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+//            viewModel.logoutUser()
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            finish()
         }
     }
 }

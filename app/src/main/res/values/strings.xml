@@ -24,4 +24,10 @@
     <string name="email">Email</string>
     <string name="welcome_to_karuna_pages">Welcome to Karuna Pages</string>
     <string name="profile">Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="questions">Questions</string>
+    <string name="my_listings">My Listings</string>
+    <string name="favorites">Favorites</string>
+    <string name="listing_claims">Listing Claims</string>
+    <string name="listings">Listings</string>
 </resources>

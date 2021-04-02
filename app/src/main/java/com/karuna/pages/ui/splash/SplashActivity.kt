@@ -15,16 +15,18 @@ class SplashActivity : AppCompatActivity() {
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
-
-            if (PreferenceManager(this).getLoginStatus() == 0) {
-                val intent = Intent(applicationContext, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                val intent = Intent(applicationContext, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+            val intent = Intent(applicationContext, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+//            if (PreferenceManager(this).getLoginStatus() == 0) {
+//                val intent = Intent(applicationContext, LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            } else {
+//                val intent = Intent(applicationContext, HomeActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
         }
     }
 
