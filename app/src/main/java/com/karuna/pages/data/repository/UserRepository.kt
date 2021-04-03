@@ -8,8 +8,8 @@ import com.karuna.pages.utils.Resource
 
 class UserRepository constructor(context: Context) {
 
-    private var remoteDataSource: UserRemoteDataSource = UserRemoteDataSource()
     private var preferenceManager: PreferenceManager = PreferenceManager(context)
+    private var remoteDataSource: UserRemoteDataSource = UserRemoteDataSource(PreferenceManager(context))
 
     suspend fun loginUser(email: String, password: String): Resource<User> =
         remoteDataSource.loginUser(email, password)

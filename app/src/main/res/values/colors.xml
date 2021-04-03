@@ -10,4 +10,5 @@
     <color name="colorPrimary">#354e9d</color>
     <color name="colorPrimaryDark">#354e9d</color>
     <color name="colorAccent">#354e9d</color>
+    <color name="separator_color">#dddddd</color>
 </resources>

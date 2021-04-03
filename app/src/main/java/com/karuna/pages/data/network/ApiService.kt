@@ -1,6 +1,5 @@
 package com.karuna.pages.data.network
 
-import com.karuna.pages.data.entities.Entries
 import com.karuna.pages.data.entities.Listing
 import com.karuna.pages.data.entities.User
 import retrofit2.Response
@@ -12,8 +11,13 @@ interface ApiService {
     @GET("listings")
     suspend fun getListings() : Response<List<Listing>>
 
-    @GET("entries")
-    suspend fun getEntries(): Response<Entries>
+    @GET("mylistings")
+    suspend fun getMyListings() : Response<List<Listing>>
+
+    /*
+    @POST("user")
+    fun createUser(@Body user: User): Single<Response<UserResponse>>
+     */
 
     @POST("login")
     fun login(@Body email: String, @Body password: String): Response<User>

@@ -4,7 +4,7 @@ import com.karuna.pages.utils.Resource
 import retrofit2.Response
 import timber.log.Timber
 
-abstract class BaseDataSource {
+abstract class BaseDataSource() {
 
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
         try {

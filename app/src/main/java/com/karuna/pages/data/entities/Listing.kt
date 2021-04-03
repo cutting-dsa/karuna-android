@@ -5,5 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 class Listing(
-    @SerializedName("name") var name: String = ""
+    @SerializedName("listingname") var listingname: String = "",
+    @SerializedName("active") var active: Int = 0,
+    @SerializedName("address") var address: String = "",
+    @SerializedName("bannerUrl") var bannerUrl: String = "",
+    @SerializedName("approved") var approved: Int = 0,
+    @SerializedName("listinguser") var listinguser: User,
+    @SerializedName("category") var category: Category
 )

@@ -5,8 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.karuna.pages.R
 import com.karuna.pages.ui.QuestionsActivity
-import com.karuna.pages.ui.claims.ClaimsActivity
-import com.karuna.pages.ui.favorites.FavoritesActivity
+import com.karuna.pages.ui.reviews.ReviewsActivity
 import com.karuna.pages.ui.listings.ListingsActivity
 import com.karuna.pages.ui.mylistings.MyListingsActivity
 import com.karuna.pages.ui.profile.ProfileActivity
@@ -25,12 +24,8 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, ListingsActivity::class.java))
         }
 
-        listingClaimsLayout.setOnClickListener {
-            startActivity(Intent(this, ClaimsActivity::class.java))
-        }
-
         favoritesLayout.setOnClickListener {
-            startActivity(Intent(this, FavoritesActivity::class.java))
+            startActivity(Intent(this, ReviewsActivity::class.java))
         }
 
         profileLayout.setOnClickListener {

@@ -134,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/favorites"
+                android:text="@string/reviews"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -150,40 +150,11 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/listingClaimsLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <ImageView
-                android:id="@+id/listingClaimsImage"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/claims"
-                tools:ignore="NestedWeights" />
-
-            <TextView
-                android:id="@+id/listingClaimstext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:text="@string/listing_claims"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/profileLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="right"
-            android:layout_weight="1"
+            android:gravity="left"
             android:padding="15dp">
 
             <ImageView

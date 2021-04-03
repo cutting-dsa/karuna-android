@@ -30,7 +30,7 @@
             android:label="Claims"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity
-            android:name=".ui.favorites.FavoritesActivity"
+            android:name=".ui.reviews.ReviewsActivity"
             android:label="Favorites"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity

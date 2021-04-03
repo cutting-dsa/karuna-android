@@ -18,6 +18,7 @@ class PreferenceManager(_context: Context) {
     companion object {
         private val LOGIN_STATUS = "LOGIN_STATUS"
         private val USER_DATA = "user"
+        private val USER_PASS = "password"
         private val PREF_NAME = "karuna_prefrences"
     }
 
@@ -31,6 +32,14 @@ class PreferenceManager(_context: Context) {
         editor.clear()
         editor.commit()
     }
+
+    fun setUserCredentials(password: String) {
+        editor.putString(USER_PASS, password)
+        editor.commit()
+    }
+
+    val password: String
+    get() = pref.getString(USER_PASS, "") ?: ""
 
     fun setLoginStatus(status: Int) {
         editor.putInt(LOGIN_STATUS, status)

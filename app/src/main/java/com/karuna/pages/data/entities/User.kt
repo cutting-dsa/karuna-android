@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 class User(
-    @SerializedName("name") var name: String = "",
-    @SerializedName("email") var email: String = ""
+    @SerializedName("firstName") var firstName: String = "",
+    @SerializedName("lastName") var lastName: String = "",
+    @SerializedName("enabled") var enabled: Int = 0,
+    @SerializedName("username") var username: String = "",
+    @SerializedName("roles") var roles: List<Role>,
 )
