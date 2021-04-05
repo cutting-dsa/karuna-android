@@ -7,9 +7,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.karuna.pages.R
 import com.karuna.pages.ui.base.BaseActivity
+import com.karuna.pages.ui.base.SpinnerAdapter
 import com.karuna.pages.ui.listings.ListingsActivity
 import com.karuna.pages.utils.Resource
-import kotlinx.android.synthetic.main.activity_create_listing.*
+import kotlinx.android.synthetic.main.activity_create_question.*
 
 class CreateListingActivity: BaseActivity() {
     private lateinit var viewModel: CreateListingViewModel
@@ -34,9 +35,9 @@ class CreateListingActivity: BaseActivity() {
     }
 
     private fun createQuestion() {
-//        val questiontext = txtQuestion.text.toString()
-//        val categoryId = categories_spinner.selectedItemId
-//        viewModel.createQuestion(categoryId.toInt(), questiontext)
+        val questiontext = txtQuestion.text.toString()
+        val categoryId = categories_spinner.selectedItemId
+        viewModel.createQuestion(categoryId.toInt(), questiontext)
     }
 
     private fun fetchCategories() {
@@ -73,9 +74,9 @@ class CreateListingActivity: BaseActivity() {
                     showLoadingIndicator(false)
                     it.data.also {
                         if (it != null) {
-//                            val adapter = SpinnerAdapter(this, it)
-//                            categories_spinner.adapter = adapter
-//                            setUpView()
+                            val adapter = SpinnerAdapter(this, it)
+                            categories_spinner.adapter = adapter
+                            setUpView()
                         }
                     }
                 }

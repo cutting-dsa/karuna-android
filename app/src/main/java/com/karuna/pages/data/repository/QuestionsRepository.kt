@@ -14,12 +14,12 @@ class QuestionsRepository constructor(context: Context) {
     suspend fun getQuestions(): Resource<List<Question>> = remoteDataSource.getQuestions()
     suspend fun getAnswers(id: Long): Resource<List<Answer>> = remoteDataSource.getAnswers(id)
     suspend fun createQuestion(categoryId: Int, questionText: String): Resource<Question> {
-        val question = Question(0, questionText, true, Category(categoryId.toString()))
+        val question = Question(0, questionText, true, Category(categoryId))
         return remoteDataSource.createQuestion(question)
     }
 
     suspend fun createAnswer(questionId: Int, answerText: String): Resource<Answer> {
-        val question = Question(questionId, "", true, Category(""))
+        val question = Question(questionId, "", true, Category(1))
         val answer = Answer("",answerText,prefManager.user!!,question)
         return remoteDataSource.createAnswer(answer, questionId.toLong())
     }

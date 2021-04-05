@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 class Category(
-    @SerializedName("id") var id: String = "",
+    @SerializedName("id") var id: Int = 0,
     @SerializedName("name") var name: String = "")

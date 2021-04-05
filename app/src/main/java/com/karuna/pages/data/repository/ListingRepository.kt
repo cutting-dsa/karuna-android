@@ -16,7 +16,7 @@ class ListingRepository constructor(context: Context) {
     suspend fun reviewListing(comment: String, rating: Int, listingId: Int): Resource<Review> {
         val review = prefManager.user?.let { Review(0,comment,
             Listing(id = listingId,
-            "",1,",","",1,it, Category("1"),
+            "",1,",","",1,it, Category(1),
             1,)
             ,rating, it,1) }
         return remoteDataSource.reviewListing(review!!)

@@ -16,7 +16,7 @@ class CreateListingViewModel (application: Application) : AndroidViewModel(appli
     private var categoryRepository = CategoryRepository(application.applicationContext)
 
     val uiState: MutableLiveData<Resource<Listing>> = MutableLiveData()
-    val categoryUIState: MutableLiveData<Resource<Category>> = MutableLiveData()
+    val categoryUIState: MutableLiveData<Resource<List<Category>>> = MutableLiveData()
 
     fun createQuestion(categoryId: Int,question: String) {
 //        viewModelScope.launch {
@@ -25,8 +25,8 @@ class CreateListingViewModel (application: Application) : AndroidViewModel(appli
     }
 
     fun fetchCategories() {
-//        viewModelScope.launch {
-//            categoryUIState.value = categoryRepository.getCategories()
-//        }
+        viewModelScope.launch {
+            categoryUIState.value = categoryRepository.getCategories()
+        }
     }
 }
