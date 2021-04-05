@@ -30,4 +30,6 @@
     <string name="reviews">Reviews</string>
     <string name="listing_claims">Listing Claims</string>
     <string name="listings">Listings</string>
+    <string name="username">Username</string>
+    <string name="category">Category</string>
 </resources>

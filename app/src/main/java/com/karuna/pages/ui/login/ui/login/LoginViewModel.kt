@@ -15,10 +15,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     val uiState: MutableLiveData<Resource<User>> = MutableLiveData()
 
-    fun loginUser(email: String, password: String) {
+    fun loginUser(username: String, password: String) {
         viewModelScope.launch {
-            val response = repository.loginUser(email, password)
+            val response = repository.loginUser(username, password)
             repository.user = response.data
+            print("********${response.data}****")
+            repository.savePass(password)
             saveLoginStatus(response.status)
             uiState.value = response
         }

@@ -1,9 +1,9 @@
 package com.karuna.pages.ui.splash
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.karuna.pages.R
 import com.karuna.pages.ui.home.HomeActivity
 import com.karuna.pages.ui.login.ui.login.LoginActivity
@@ -18,15 +18,12 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, HomeActivity::class.java)
             startActivity(intent)
             finish()
-//            if (PreferenceManager(this).getLoginStatus() == 0) {
-//                val intent = Intent(applicationContext, LoginActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            } else {
-//                val intent = Intent(applicationContext, HomeActivity::class.java)
-//                startActivity(intent)
-//                finish()
+//            var intent = Intent(applicationContext, LoginActivity::class.java)
+//            if (PreferenceManager(this).getLoginStatus() != 0) {
+//                intent = Intent(applicationContext, HomeActivity::class.java)
 //            }
+//            startActivity(intent)
+//            finish()
         }
     }
 

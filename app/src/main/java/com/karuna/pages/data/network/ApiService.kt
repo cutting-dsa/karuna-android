@@ -1,27 +1,40 @@
 package com.karuna.pages.data.network
 
-import com.karuna.pages.data.entities.Listing
-import com.karuna.pages.data.entities.User
+import com.karuna.pages.data.entities.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
-    @GET("listings")
-    suspend fun getListings() : Response<List<Listing>>
+    @GET("listing/")
+    suspend fun getListings(@Header("Authorization") auth: String): Response<List<Listing>>
 
-    @GET("mylistings")
-    suspend fun getMyListings() : Response<List<Listing>>
+    @GET("listing/byuser/{id}")
+    suspend fun getMyListings(
+        @Header("Authorization") auth: String, @Path("id") id: Long
+    ): Response<List<Listing>>
 
-    /*
-    @POST("user")
-    fun createUser(@Body user: User): Single<Response<UserResponse>>
-     */
+    @GET("question/")
+    suspend fun getQuestions(@Header("Authorization") auth: String): Response<List<Question>>
 
-    @POST("login")
-    fun login(@Body email: String, @Body password: String): Response<User>
+    @GET("answer/question-answers/{id}")
+    suspend fun getAnswers(
+        @Header("Authorization") auth: String,
+        @Path("id") id: Long
+    ): Response<List<Answer>>
+
+    @GET("review/")
+    suspend fun getReviews(@Header("Authorization") auth: String): Response<List<Review>>
+
+    @GET("login")
+    suspend fun login(
+        @Query("username") username: String,
+        @Query("password") password: String
+    ): Response<User>
 
     @POST("register")
-    fun register(@Body name: String, @Body email: String, @Body password: String): Response<User>
+    suspend fun register(
+        @Body name: String,
+        @Body email: String,
+        @Body password: String
+    ): Response<User>
 }

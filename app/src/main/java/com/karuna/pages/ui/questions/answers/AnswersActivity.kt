@@ -1,4 +1,4 @@
-package com.karuna.pages.ui.reviews
+package com.karuna.pages.ui.questions.answers
 
 import android.os.Bundle
 import android.widget.Toast
@@ -10,51 +10,63 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
 import com.karuna.pages.data.entities.*
 import com.karuna.pages.ui.base.BaseActivity
+import com.karuna.pages.ui.questions.QuestionsViewModel
+import com.karuna.pages.utils.Constants
 import com.karuna.pages.utils.Resource
-import kotlinx.android.synthetic.main.activity_reviews.*
+import kotlinx.android.synthetic.main.activity_answers.*
 
-class ReviewsActivity  : BaseActivity(){
-    private lateinit var viewModel: ReviewsViewModel
+class AnswersActivity: BaseActivity(){
+    private lateinit var viewModel: QuestionsViewModel
 
-    private lateinit var tempReviews: List<Review>
-    private lateinit var reviewsAdapter: ReviewAdapter
+    private lateinit var tempAnswers: List<Answer>
+    private lateinit var adapter: AnswersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reviews)
-        viewModel = ViewModelProvider(this).get(ReviewsViewModel::class.java)
-        fetchReviews()
+        setContentView(R.layout.activity_answers)
+        viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
+        fetchAnswers()
         registerUiListeners()
     }
 
     private fun setUpView() {
-        reviewsAdapter = ReviewAdapter(tempReviews)
+        adapter = AnswersAdapter(tempAnswers)
         val layoutManager = LinearLayoutManager(applicationContext)
-        reviewsRecyclerView.itemAnimator = DefaultItemAnimator()
-        reviewsRecyclerView.layoutManager = layoutManager
-        reviewsRecyclerView.adapter = reviewsAdapter
+        answersRecyclerView.itemAnimator = DefaultItemAnimator()
+        answersRecyclerView.layoutManager = layoutManager
+        answersRecyclerView.adapter = adapter
+
+        val question: Question = tempAnswers.first().question
+        txtQuestion.text = question.name
 
         swiperefresh.apply {
             setColorSchemeResources(*refreshColors)
             isRefreshing = false
-            setOnRefreshListener {
-                //viewModel.fetchReviews()
-            }
+            setOnRefreshListener(::fetchAnswers)
         }
     }
 
-    private fun fetchReviews() {
-        viewModel.fetchReviews()
+    private fun fetchAnswers() {
+        @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+        val questionId = intent.extras?.getInt(Constants.questionId)
+        questionId?.let { viewModel.fetchAnswers(it) }
+    }
+
+    private fun addAnswers() {
+        tempAnswers = listOf(
+            Answer("0","sdsds", user = User(1,"Johnstone","",1,"otoyo",listOf(Role("",""))),
+            question = Question(1,"lorem ipsum",true, Category("","Restaurants"),"10-10-2021"),
+            created_at = "10-10-2021"))
     }
 
     private fun registerUiListeners() {
-        viewModel.uiState.observe(this, Observer {
+        viewModel.answerUIState.observe(this, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     showLoadingIndicator(false)
                     it.data.also {
                         if (it != null) {
-                            tempReviews = it
+                            tempAnswers = it
                             setUpView()
                         }
                     }

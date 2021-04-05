@@ -7,12 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
-import com.karuna.pages.data.entities.Category
 import com.karuna.pages.data.entities.Listing
-import com.karuna.pages.data.entities.Role
-import com.karuna.pages.data.entities.User
 import com.karuna.pages.ui.base.BaseActivity
-import com.karuna.pages.ui.listings.ListingAdapter
 import com.karuna.pages.utils.Resource.Status
 import kotlinx.android.synthetic.main.activity_listings.*
 
@@ -26,10 +22,9 @@ class MyListingsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_listings)
         viewModel = ViewModelProvider(this).get(MyListingsViewModel::class.java)
-        addListings()
-        setUpView()
-        registerUiListeners(true)
-        // fetchListings()
+        fetchListings()
+        registerUiListeners()
+
     }
 
     private fun setUpView() {
@@ -48,53 +43,25 @@ class MyListingsActivity : BaseActivity() {
         viewModel.fetchListings()
     }
 
-    private fun addListings() {
-        tempListings = listOf(
-            Listing("Karuna Restaurant",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant1",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant2",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant3",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant4",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant5",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants")),
-            Listing("Karuna Restaurant6",1,
-                "125343 N 6th st fairfield IA 5227","",1,
-                User("Johnstone","",1,"otoyo",listOf(Role("",""))),
-                Category("","Restaurants"))
-        )
-    }
-
-    private fun registerUiListeners(showIndicator: Boolean) {
+    private fun registerUiListeners() {
         viewModel.uiState.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-                    if (showIndicator) showLoadingIndicator(false)
+                    showLoadingIndicator(false)
+                    it.data.also {
+                        if (it != null) {
+                            tempListings = it
+                            setUpView()
+                        }
+                    }
                 }
                 Status.ERROR -> {
-                    if (showIndicator) showLoadingIndicator(false)
+                    showLoadingIndicator(false)
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
 
                 Status.LOADING -> {
-                    if (showIndicator) showLoadingIndicator(true)
+                    showLoadingIndicator(true)
                     Toast.makeText(this, "Loading!!!!!!", Toast.LENGTH_SHORT).show()
                 }
             }

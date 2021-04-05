@@ -11,10 +11,16 @@
         android:layout_height="match_parent"
         android:id="@+id/swiperefresh">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listingsRecyclerView"
+            android:id="@+id/reviewsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager" />
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

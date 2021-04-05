@@ -55,20 +55,19 @@ class LoginActivity : BaseActivity() {
         }
 
         btnLogin.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-//            val email = txtUsername.text.toString()
-//            val password = txtPassword.text.toString()
-//            when {
-//                email.isBlank() -> {
-//                    Toast.makeText(this, "Please enter your email",Toast.LENGTH_SHORT).show()
-//                }
-//                password.isBlank() -> {
-//                    Toast.makeText(this, "Please enter your password",Toast.LENGTH_SHORT).show()
-//                }
-//                else -> {
-//                    loginUser(email,password)
-//                }
-//            }
+            val email = txtUsername.text.toString()
+            val password = txtPassword.text.toString()
+            when {
+                email.isBlank() -> {
+                    Toast.makeText(this, "Please enter your email",Toast.LENGTH_SHORT).show()
+                }
+                password.isBlank() -> {
+                    Toast.makeText(this, "Please enter your password",Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    loginUser(email,password)
+                }
+            }
         }
 
     }

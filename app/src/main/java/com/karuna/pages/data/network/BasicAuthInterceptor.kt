@@ -8,7 +8,10 @@ class BasicAuthInterceptor(username: String, password: String): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         var request = chain.request()
-        request = request.newBuilder().header("Authorization", credentials).build()
+        request = request.newBuilder()
+            .header("Authorization", credentials)
+            .header("Accept", "application/json")
+            .build()
         return chain.proceed(request)
     }
 }

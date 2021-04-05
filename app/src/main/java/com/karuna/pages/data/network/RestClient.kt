@@ -6,14 +6,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RestClient private constructor(preferenceManager: PreferenceManager) {
+class RestClient private constructor(
+    preferenceManager: PreferenceManager,
+    intercept: Boolean = true
+) {
     companion object {
         private lateinit var mApiServices: ApiService
         private var mInstance: RestClient? = null
-        fun getInstance(preferenceManager: PreferenceManager): RestClient {
+        fun getInstance(
+            preferenceManager: PreferenceManager,
+            intercept: Boolean = true
+        ): RestClient {
             if (mInstance == null) {
                 synchronized(this) {
-                    mInstance = RestClient(preferenceManager)
+                    mInstance = RestClient(preferenceManager, intercept)
                 }
             }
             return mInstance!!
@@ -23,8 +29,13 @@ class RestClient private constructor(preferenceManager: PreferenceManager) {
     init {
         val username = preferenceManager.user?.username.orEmpty()
         val password = preferenceManager.password
-        val okHttpClient = OkHttpClient().newBuilder()
-            .addInterceptor(BasicAuthInterceptor(username,password))
+
+        val builder = OkHttpClient().newBuilder()
+       // if (intercept) {
+//            builder.addInterceptor(BasicAuthInterceptor(username, password))
+        //}
+       // builder.addInterceptor(BasicAuthInterceptor("karuna", "password"))
+        val okHttpClient = builder
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .build()

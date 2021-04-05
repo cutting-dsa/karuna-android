@@ -13,3 +13,8 @@ fun getJsonDataFromAsset(context: Context, fileName: String): String? {
     }
     return jsonString
 }
+
+/**
+ * On list item click listener alias
+ */
+typealias OnItemClickListener<T> = (T) -> Unit

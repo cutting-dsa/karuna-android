@@ -3,21 +3,28 @@ package com.karuna.pages.ui.listings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.karuna.pages.R
 import com.karuna.pages.data.entities.Listing
+import com.karuna.pages.utils.OnItemClickListener
+import kotlinx.android.synthetic.main.listing_list_item.view.*
 
 class ListingAdapter(private val listings: List<Listing>) :
     RecyclerView.Adapter<ListingAdapter.MyViewHolder>() {
+    var listener: OnItemClickListener<Listing>? = null
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var txtName: TextView = view.findViewById(R.id.txtName)
-        var txtOwner: TextView = view.findViewById(R.id.txtOwner)
-        var txtCategory: TextView = view.findViewById(R.id.txtCategory)
-        var txtAddress: TextView = view.findViewById(R.id.txtAddress)
-        var ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
+        fun populateViewWithListing(listing: Listing, listener: OnItemClickListener<Listing>?) {
+            with(itemView) {
+                setOnClickListener { listener?.invoke(listing) }
+                txtName.text = listing.listingname
+                txtOwner.text = "${listing.listinguser.firstName} ${listing.listinguser.lastName}"
+                txtCategory.text = listing.category.name
+                txtAddress.text = listing.address
+                ratingBar.rating = listing.averageRating.toFloat()
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -28,11 +35,7 @@ class ListingAdapter(private val listings: List<Listing>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val listing = listings[position]
-        holder.txtName.text = listing.listingname
-        holder.txtOwner.text = "${listing.listinguser.firstName} ${listing.listinguser.lastName}"
-        holder.txtCategory.text = listing.category.name
-        holder.txtAddress.text = listing.address
-//        holder.ratingBar.setRating = listing.address
+        holder.populateViewWithListing(listing, listener)
     }
 
     override fun getItemCount(): Int {
