@@ -1,6 +1,9 @@
 package com.karuna.pages.ui.questions.answers
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
@@ -29,6 +32,28 @@ class AnswersActivity: BaseActivity(){
         registerUiListeners()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.mainmenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_refresh -> {
+                val intent = Intent(
+                    this,
+                    CreateAnswerActivity::class.java
+                //TODO: Send question id
+                )
+                startActivity(intent)
+            }
+            else -> {
+            }
+        }
+        return true
+    }
+
     private fun setUpView() {
         adapter = AnswersAdapter(tempAnswers)
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -50,13 +75,6 @@ class AnswersActivity: BaseActivity(){
         @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val questionId = intent.extras?.getInt(Constants.questionId)
         questionId?.let { viewModel.fetchAnswers(it) }
-    }
-
-    private fun addAnswers() {
-        tempAnswers = listOf(
-            Answer("0","sdsds", user = User(1,"Johnstone","",1,"otoyo",listOf(Role("",""))),
-            question = Question(1,"lorem ipsum",true, Category("","Restaurants"),"10-10-2021"),
-            created_at = "10-10-2021"))
     }
 
     private fun registerUiListeners() {

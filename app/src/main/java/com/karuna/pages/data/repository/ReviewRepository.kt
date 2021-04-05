@@ -10,5 +10,4 @@ class ReviewRepository constructor(context: Context) {
     private val prefManager = PreferenceManager(context)
     private var remoteDataSource: ReviewRemoteDataSource = ReviewRemoteDataSource(prefManager)
     suspend fun getReviews(): Resource<List<Review>> = remoteDataSource.getReviews()
-
 }

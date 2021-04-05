@@ -1,5 +1,6 @@
 package com.karuna.pages.ui.listings
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
 import com.karuna.pages.data.entities.Listing
 import com.karuna.pages.ui.base.BaseActivity
+import com.karuna.pages.ui.listings.listing.ListingDetailActivity
+import com.karuna.pages.utils.Constants
+import com.karuna.pages.utils.OnItemClickListener
 import com.karuna.pages.utils.Resource
 import kotlinx.android.synthetic.main.activity_listings.*
 
@@ -33,6 +37,18 @@ class ListingsActivity : BaseActivity() {
         listingsRecyclerView.layoutManager = layoutManager
         listingsRecyclerView.adapter = adapter
 
+        adapter.listener = object : OnItemClickListener<Listing> {
+            override fun invoke(listing: Listing) {
+                val intent = Intent(
+                    this@ListingsActivity,
+                    ListingDetailActivity::class.java
+                ).apply {
+                    putExtra(Constants.listingId, listing.id)
+                }
+                startActivity(intent)
+            }
+        }
+
         swiperefresh.setOnRefreshListener {
             fetchListings()
         }
@@ -43,7 +59,6 @@ class ListingsActivity : BaseActivity() {
     }
 
     private fun registerUiListeners() {
-        showLoadingIndicator(true)
         viewModel.uiState.observe(this, Observer { it ->
             when (it.status) {
                 Resource.Status.SUCCESS -> {
@@ -68,15 +83,11 @@ class ListingsActivity : BaseActivity() {
         })
     }
 
-//    private fun navigateToListing(listing: Listing) {
-//        val data = Intent().apply {
-//            putExtra(Constants.question, listing)
-//        }
-//        startActivity(data)
-//    }
-//
-//    override fun onCellClickListener(data: Listing) {
-//        navigateToListing(data)
-//    }
+    private fun navigateToListing(listing: Listing) {
+        val data = Intent().apply {
+            putExtra(Constants.listingId, listing.id)
+        }
+        startActivity(data)
+    }
 
 }

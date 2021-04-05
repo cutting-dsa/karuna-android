@@ -8,6 +8,12 @@ interface ApiService {
     @GET("listing/")
     suspend fun getListings(@Header("Authorization") auth: String): Response<List<Listing>>
 
+    @GET("listing/{id}")
+    suspend fun getListing(
+        @Header("Authorization") auth: String,
+        @Path("id") id: Long
+    ): Response<Listing>
+
     @GET("listing/byuser/{id}")
     suspend fun getMyListings(
         @Header("Authorization") auth: String, @Path("id") id: Long
@@ -16,7 +22,7 @@ interface ApiService {
     @GET("question/")
     suspend fun getQuestions(@Header("Authorization") auth: String): Response<List<Question>>
 
-    @GET("answer/question-answers/{id}")
+    @GET("answer/question/{id}")
     suspend fun getAnswers(
         @Header("Authorization") auth: String,
         @Path("id") id: Long
@@ -24,6 +30,13 @@ interface ApiService {
 
     @GET("review/")
     suspend fun getReviews(@Header("Authorization") auth: String): Response<List<Review>>
+
+    @POST("review/create")
+    suspend fun reviewListing(
+        @Header("Authorization") auth: String,
+        @Body review: Review
+    ): Response<Review>
+
 
     @GET("login")
     suspend fun login(
@@ -37,4 +50,13 @@ interface ApiService {
         @Body email: String,
         @Body password: String
     ): Response<User>
+
+    @GET("category/")
+    suspend fun getCategories(@Header("Authorization") auth: String): Response<List<Category>>
+
+    @POST("question/")
+    suspend fun createQuestion(
+        @Header("Authorization") auth: String,
+        @Body question: Question
+    ): Response<Question>
 }

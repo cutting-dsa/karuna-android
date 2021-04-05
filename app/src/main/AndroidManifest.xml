@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.karuna.pages">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,10 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KarunaPages">
-
-        <activity android:name=".ui.questions.answers.AnswersActivity"
-            android:parentActivityName=".ui.questions.QuestionsActivity"
-            android:label="Answers"/>
+        <activity android:name=".ui.listings.listing.ListingDetailActivity"
+            android:label="Listing Details"
+            android:parentActivityName=".ui.listings.ListingsActivity"/>
+        <activity android:name=".ui.listings.reviewlisting.ReviewListingActivity" />
+        <activity
+            android:name=".ui.questions.answers.CreateAnswerActivity"
+            android:label="Answer Question"
+            android:parentActivityName=".ui.questions.QuestionsActivity" />
+        <activity
+            android:name=".ui.questions.CreateQuestionActivity"
+            android:label="Ask Question"
+            android:parentActivityName=".ui.questions.QuestionsActivity" />
+        <activity
+            android:name=".ui.questions.answers.AnswersActivity"
+            android:label="Answers"
+            android:parentActivityName=".ui.questions.QuestionsActivity" />
         <activity
             android:name=".ui.questions.QuestionsActivity"
             android:label="Questions"

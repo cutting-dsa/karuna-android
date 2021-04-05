@@ -2,6 +2,8 @@ package com.karuna.pages.ui.questions
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
@@ -20,7 +22,8 @@ import kotlinx.android.synthetic.main.activity_listings.*
 import kotlinx.android.synthetic.main.activity_listings.swiperefresh
 import kotlinx.android.synthetic.main.activity_questions.*
 
-class QuestionsActivity : BaseActivity(){
+
+class QuestionsActivity : BaseActivity() {
     private lateinit var viewModel: QuestionsViewModel
 
     private lateinit var tempQuestions: List<Question>
@@ -30,10 +33,29 @@ class QuestionsActivity : BaseActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
         viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
-        addQuestions()
         fetchQuestions()
-        setUpView()
-        registerUiListeners(true)
+        registerUiListeners()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.mainmenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_refresh -> {
+                val intent = Intent(
+                    this@QuestionsActivity,
+                    CreateQuestionActivity::class.java
+                )
+                startActivity(intent)
+            }
+            else -> {
+            }
+        }
+        return true
     }
 
     private fun setUpView() {
@@ -45,8 +67,10 @@ class QuestionsActivity : BaseActivity(){
         adapter.listener = object : OnItemClickListener<Question> {
             override fun invoke(question: Question) {
 
-                val intent = Intent(this@QuestionsActivity,
-                    AnswersActivity::class.java).apply {
+                val intent = Intent(
+                    this@QuestionsActivity,
+                    AnswersActivity::class.java
+                ).apply {
                     putExtra(Constants.questionId, question.id)
                 }
                 startActivity(intent)
@@ -66,18 +90,7 @@ class QuestionsActivity : BaseActivity(){
         viewModel.fetchQuestions()
     }
 
-    private fun addQuestions() {
-        tempQuestions = listOf(
-            Question(1,"lorem ipsum",true,Category("","Restaurants"),"10-10-2021"),
-            Question(2,"lorem ipsum1",true,Category("","Restaurants1"),"10-10-2021"),
-            Question(3,"lorem ipsum2",true,Category("","Restaurants2"),"10-10-2021"),
-            Question(4,"lorem ipsum3",true,Category("","Restaurants3"),"10-10-2021"),
-            Question(5,"lorem ipsum4",true,Category("","Restaurants4"),"10-10-2021"),
-            Question(6,"lorem ipsum5",true,Category("","Restaurants5"),"10-10-2021"),
-        )
-    }
-
-    private fun registerUiListeners(show: Boolean) {
+    private fun registerUiListeners() {
         viewModel.uiState.observe(this, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
@@ -90,12 +103,12 @@ class QuestionsActivity : BaseActivity(){
                     }
                 }
                 Resource.Status.ERROR -> {
-                    if (show) showLoadingIndicator(false)
+                    showLoadingIndicator(false)
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
 
                 Resource.Status.LOADING -> {
-                    if (show) showLoadingIndicator(true)
+                    showLoadingIndicator(true)
                     Toast.makeText(this, "Loading!!!!!!", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -110,9 +123,11 @@ class QuestionsActivity : BaseActivity(){
 
         init {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-            refreshColors = intArrayOf(R.color.colorPrimaryDark, android.R.color.holo_green_dark,
+            refreshColors = intArrayOf(
+                R.color.colorPrimaryDark, android.R.color.holo_green_dark,
                 R.color.colorAccent, android.R.color.holo_purple, android.R.color.holo_red_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_dark)
+                android.R.color.holo_orange_light, android.R.color.holo_red_dark
+            )
         }
 
     }

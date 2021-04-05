@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 class Listing(
+    @SerializedName("id") var id: Int = 0,
     @SerializedName("listingname") var listingname: String = "",
     @SerializedName("active") var active: Int = 0,
     @SerializedName("address") var address: String = "",

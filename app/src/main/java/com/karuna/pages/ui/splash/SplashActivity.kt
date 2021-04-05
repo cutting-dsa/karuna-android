@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.karuna.pages.R
+import com.karuna.pages.data.entities.Role
+import com.karuna.pages.data.entities.User
 import com.karuna.pages.ui.home.HomeActivity
-import com.karuna.pages.ui.login.ui.login.LoginActivity
 import com.karuna.pages.utils.PreferenceManager
 
 class SplashActivity : AppCompatActivity() {
@@ -15,6 +16,11 @@ class SplashActivity : AppCompatActivity() {
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
+
+            val roles = listOf<Role>(Role(1, "SUPER_ADMIN"))
+            val user = User(1, "Karuna", "Admin", 1, "karuna", roles)
+            PreferenceManager(applicationContext).user = user
+            PreferenceManager(applicationContext).setLoginStatus(1)
             val intent = Intent(applicationContext, HomeActivity::class.java)
             startActivity(intent)
             finish()

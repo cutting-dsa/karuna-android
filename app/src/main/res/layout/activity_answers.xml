@@ -11,9 +11,7 @@
         android:id="@+id/txtQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="lorem ipsumlorem ipsumlorem ipsumlorem
-         ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum
-ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum" />
+        android:text="" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"

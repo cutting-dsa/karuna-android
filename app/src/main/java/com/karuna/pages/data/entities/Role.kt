@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 class Role(
-    @SerializedName("id") var id: String = "",
-    @SerializedName("answer") var name: String = "",
+    @SerializedName("id") var id: Int = 0,
+    @SerializedName("name") var name: String = "",
 )

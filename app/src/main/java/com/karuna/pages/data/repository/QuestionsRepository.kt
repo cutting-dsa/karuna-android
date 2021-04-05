@@ -2,6 +2,7 @@ package com.karuna.pages.data.repository
 
 import android.content.Context
 import com.karuna.pages.data.entities.Answer
+import com.karuna.pages.data.entities.Category
 import com.karuna.pages.data.entities.Question
 import com.karuna.pages.data.remote.QuestionRemoteDataSource
 import com.karuna.pages.utils.PreferenceManager
@@ -12,5 +13,9 @@ class QuestionsRepository constructor(context: Context) {
     private var remoteDataSource: QuestionRemoteDataSource = QuestionRemoteDataSource(prefManager)
     suspend fun getQuestions(): Resource<List<Question>> = remoteDataSource.getQuestions()
     suspend fun getAnswers(id: Long): Resource<List<Answer>> = remoteDataSource.getAnswers(id)
+    suspend fun createQuestion(categoryId: Int, questionText: String): Resource<Question> {
+        val question = Question(0, questionText, true, Category(categoryId.toString()))
+        return remoteDataSource.createQuestion(question)
+    }
 
 }
