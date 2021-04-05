@@ -16,6 +16,8 @@ class QuestionsViewModel(application: Application) : AndroidViewModel(applicatio
     val uiState: MutableLiveData<Resource<List<Question>>> = MutableLiveData()
     val answerUIState: MutableLiveData<Resource<List<Answer>>> = MutableLiveData()
 
+    val questionState: MutableLiveData<Int> = MutableLiveData()
+
     fun fetchQuestions() {
         viewModelScope.launch {
             uiState.value = repository.getQuestions()
@@ -27,4 +29,9 @@ class QuestionsViewModel(application: Application) : AndroidViewModel(applicatio
             answerUIState.value = repository.getAnswers(id.toLong())
         }
     }
+
+    fun setQuestionId(id: Int) {
+        questionState.value = id
+    }
+
 }

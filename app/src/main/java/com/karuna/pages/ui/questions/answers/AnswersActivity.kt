@@ -11,14 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
-import com.karuna.pages.data.entities.*
+import com.karuna.pages.data.entities.Answer
+import com.karuna.pages.data.entities.Question
 import com.karuna.pages.ui.base.BaseActivity
 import com.karuna.pages.ui.questions.QuestionsViewModel
 import com.karuna.pages.utils.Constants
 import com.karuna.pages.utils.Resource
 import kotlinx.android.synthetic.main.activity_answers.*
 
-class AnswersActivity: BaseActivity(){
+class AnswersActivity : BaseActivity() {
     private lateinit var viewModel: QuestionsViewModel
 
     private lateinit var tempAnswers: List<Answer>
@@ -44,8 +45,9 @@ class AnswersActivity: BaseActivity(){
                 val intent = Intent(
                     this,
                     CreateAnswerActivity::class.java
-                //TODO: Send question id
-                )
+                ).apply {
+                    putExtra(Constants.questionId, viewModel.questionState.value)
+                }
                 startActivity(intent)
             }
             else -> {
@@ -73,8 +75,11 @@ class AnswersActivity: BaseActivity(){
 
     private fun fetchAnswers() {
         @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        val questionId = intent.extras?.getInt(Constants.questionId)
-        questionId?.let { viewModel.fetchAnswers(it) }
+        val passedId = intent.extras?.getInt(Constants.questionId)
+        passedId?.let {
+            viewModel.setQuestionId(it)
+            viewModel.fetchAnswers(it)
+        }
     }
 
     private fun registerUiListeners() {
@@ -110,9 +115,11 @@ class AnswersActivity: BaseActivity(){
 
         init {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-            refreshColors = intArrayOf(R.color.colorPrimaryDark, android.R.color.holo_green_dark,
+            refreshColors = intArrayOf(
+                R.color.colorPrimaryDark, android.R.color.holo_green_dark,
                 R.color.colorAccent, android.R.color.holo_purple, android.R.color.holo_red_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_dark)
+                android.R.color.holo_orange_light, android.R.color.holo_red_dark
+            )
         }
 
     }

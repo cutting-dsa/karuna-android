@@ -14,10 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KarunaPages">
-        <activity android:name=".ui.listings.listing.ListingDetailActivity"
+        <activity android:name=".ui.listings.create.CreateListingActivity"
+            android:label="Create Listing"
+            android:parentActivityName=".ui.mylistings.MyListingsActivity"
+            />
+        <activity
+            android:name=".ui.listings.listing.ListingDetailActivity"
             android:label="Listing Details"
-            android:parentActivityName=".ui.listings.ListingsActivity"/>
-        <activity android:name=".ui.listings.reviewlisting.ReviewListingActivity" />
+            android:parentActivityName=".ui.listings.ListingsActivity" />
+        <activity
+            android:name=".ui.listings.reviewlisting.ReviewListingActivity"
+            android:label="Review Listing"
+            android:parentActivityName=".ui.listings.ListingsActivity" />
         <activity
             android:name=".ui.questions.answers.CreateAnswerActivity"
             android:label="Answer Question"

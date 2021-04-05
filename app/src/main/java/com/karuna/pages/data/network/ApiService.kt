@@ -59,4 +59,10 @@ interface ApiService {
         @Header("Authorization") auth: String,
         @Body question: Question
     ): Response<Question>
+
+    @POST("answer/")
+    suspend fun createAnswer(
+        @Header("Authorization") auth: String,
+        @Body answer: Answer
+    ): Response<Answer>
 }

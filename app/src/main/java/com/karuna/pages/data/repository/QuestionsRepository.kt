@@ -18,4 +18,10 @@ class QuestionsRepository constructor(context: Context) {
         return remoteDataSource.createQuestion(question)
     }
 
+    suspend fun createAnswer(questionId: Int, answerText: String): Resource<Answer> {
+        val question = Question(questionId, "", true, Category(""))
+        val answer = Answer("",answerText,prefManager.user!!,question)
+        return remoteDataSource.createAnswer(answer, questionId.toLong())
+    }
+
 }

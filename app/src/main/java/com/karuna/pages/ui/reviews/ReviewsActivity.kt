@@ -13,7 +13,7 @@ import com.karuna.pages.ui.base.BaseActivity
 import com.karuna.pages.utils.Resource
 import kotlinx.android.synthetic.main.activity_reviews.*
 
-class ReviewsActivity  : BaseActivity(){
+class ReviewsActivity : BaseActivity(){
     private lateinit var viewModel: ReviewsViewModel
 
     private lateinit var tempReviews: List<Review>

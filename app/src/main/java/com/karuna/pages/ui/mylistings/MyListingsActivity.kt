@@ -1,6 +1,9 @@
 package com.karuna.pages.ui.mylistings
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
 import com.karuna.pages.data.entities.Listing
 import com.karuna.pages.ui.base.BaseActivity
+import com.karuna.pages.ui.listings.create.CreateListingActivity
 import com.karuna.pages.utils.Resource.Status
 import kotlinx.android.synthetic.main.activity_listings.*
 
@@ -37,6 +41,27 @@ class MyListingsActivity : BaseActivity() {
         swiperefresh.setOnRefreshListener {
             fetchListings()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.mainmenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_refresh -> {
+                val intent = Intent(
+                    this,
+                    CreateListingActivity::class.java
+                )
+                startActivity(intent)
+            }
+            else -> {
+            }
+        }
+        return true
     }
 
     private fun fetchListings() {

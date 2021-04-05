@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karuna.pages.R
-import com.karuna.pages.data.entities.Category
 import com.karuna.pages.data.entities.Question
 import com.karuna.pages.ui.base.BaseActivity
 import com.karuna.pages.ui.questions.answers.AnswersActivity
